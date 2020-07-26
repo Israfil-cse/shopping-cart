@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>Shopping Cart</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
+   <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+   <section>
+      <div class="container">
+         <div class="cart">
+            <div class="col-md-12 col-lg-10 mx-auto">
+               <div id="phone_item" class="cart-item">
+                  <div class="row">
+                     <div class="col-md-7 center-item">
+                        <img id="hidden" src="images/product-1.png" alt="">
+                        <h5>iPhone 11 128GB Black</h5>
+                     </div>
+
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button id="negativeBtn" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="indicator" type="text" class="form-control text-center" value="1">
+                           <button id="positiveBtn" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <h5>$<span id="currentAmount">1219</span></h5>
+                        <img src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+                     <div class="col-md-7 center-item mx-auto">
+                        <img src="images/product-2.png" alt="">
+                        <h5>iPhone 11 Silicone Case - Black</h5>
+                     </div>
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button id="case_negativeBtn" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="case_indicator" type="text" class="form-control text-center" value="1">
+                           <button id="case_PositiveBtn" class="btn btn-default"><i class="fas fa-plus"></i></button>
+
+                        </div>
+                        <h5>$<span id="case_currentAmount">59</span></h5>
+                        <img src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+
+                     <div class="col-md-8">
+                        <h5>Subtotal: </h5>
+                        <h5>Tax:</h5>
+                        <h5>Total:</h5>
+                     </div>
+
+                     <div class="col-md-4 status">
+                        <h5>$<span id="sub_totalAmount">1278</span></h5>
+                        <h5>$0</h5>
+                        <h5>$<span id="current_total">1278</span></h5>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-12 pt-4 pb-4">
+                  <button type="button" class="btn btn-success check-out">Check Out</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <script>
+      // hidden item 
+      const hiddenBtn = document.getElementById('hidden');
+      hiddenBtn.addEventListener('click', function(){
+         const remove = document.getElementById('phone_item');
+         remove.style.display = 'none';
+      });
+
+
+      // iPhone 11 128GB Black
+      // plusBtn
+      const plusBtn = document.getElementById("positiveBtn");
+      plusBtn.addEventListener("click", function () {
+         clickEventSortedP('indicator');
+
+         // connection 
+         const currentPrice = document.getElementById('currentAmount').innerText;
+         const currentPriceNum = parseFloat(currentPrice);
+         const sumPrice = currentPriceNum + 1219;
+         document.getElementById('currentAmount').innerText = sumPrice;
+
+         // sub total 
+         const subTotalAmount = document.getElementById('sub_totalAmount').innerText;
+         const subTotalAmountNumber = parseFloat(subTotalAmount);
+         const sumSubTotal = subTotalAmountNumber + 1219;
+         document.getElementById('sub_totalAmount').innerText = sumSubTotal;
+
+         // total 
+         const total = document.getElementById('current_total').innerText;
+         const totalNumber = parseFloat(total);
+         const sumTotal = totalNumber + 1219;
+         document.getElementById('current_total').innerText = sumTotal;
+
+      });
+
+      // minus 
+      const minusBtn = document.getElementById("negativeBtn");
+      minusBtn.addEventListener("click", function () {
+         clickEventSortedN('indicator');
+
+         // connection 
+         const currentPrice = document.getElementById('currentAmount').innerText;
+         const currentPriceNum = parseFloat(currentPrice);
+         const subPrice = currentPriceNum - 1219;
+         document.getElementById('currentAmount').innerText = subPrice;
+
+         // sub total 
+         const subTotalAmount = document.getElementById('sub_totalAmount').innerText;
+         const subTotalAmountNumber = parseFloat(subTotalAmount);
+         const sumSubTotal = subTotalAmountNumber -1219;
+         document.getElementById('sub_totalAmount').innerText = sumSubTotal;
+
+         // total 
+         const total = document.getElementById('current_total').innerText;
+         const totalNumber = parseFloat(total);
+         const sumTotal = totalNumber - 1219;
+         document.getElementById('current_total').innerText = sumTotal;
+      });
+
+      // iPhone 11 Silicone Case - Black
+
+      // case plus 
+      const CasePlusBtn = document.getElementById("case_PositiveBtn");
+      CasePlusBtn.addEventListener("click", function () {
+         clickEventSortedP('case_indicator');
+
+         // connection 
+         const caseCurrentPrice = document.getElementById('case_currentAmount').innerText;
+         const caseCurrentPriceNum = parseFloat(caseCurrentPrice);
+         const caseSubPrice = caseCurrentPriceNum + 59;
+         document.getElementById('case_currentAmount').innerText = caseSubPrice;
+         
+         // sub total 
+
+         const subTotalAmount = document.getElementById('sub_totalAmount').innerText;
+         const subTotalAmountNumber = parseFloat(subTotalAmount);
+         const sumSubTotal = subTotalAmountNumber + 59;
+         document.getElementById('sub_totalAmount').innerText = sumSubTotal;
+
+         // total 
+         const total = document.getElementById('current_total').innerText;
+         const totalNumber = parseFloat(total);
+         const sumTotal = totalNumber + 59;
+         document.getElementById('current_total').innerText = sumTotal;
+
+      });
+
+      // case minus 
+      const CaseMinusBtn = document.getElementById("case_negativeBtn");
+      CaseMinusBtn.addEventListener("click", function () {
+         clickEventSortedN('case_indicator');
+
+         // connection 
+         const caseCurrentPrice = document.getElementById('case_currentAmount').innerText;
+         const caseCurrentPriceNum = parseFloat(caseCurrentPrice);
+         const caseSubPrice = caseCurrentPriceNum - 59;
+         document.getElementById('case_currentAmount').innerText = caseSubPrice;
+
+         // sub total 
+
+         const subTotalAmount = document.getElementById('sub_totalAmount').innerText;
+         const subTotalAmountNumber = parseFloat(subTotalAmount);
+         const sumSubTotal = subTotalAmountNumber - 59;
+         document.getElementById('sub_totalAmount').innerText = sumSubTotal;
+
+         // total 
+         const total = document.getElementById('current_total').innerText;
+         const totalNumber = parseFloat(total);
+         const sumTotal = totalNumber - 59;
+         document.getElementById('current_total').innerText = sumTotal;
+      });
+
+
+
+
+      function clickEventSortedP(id) {
+         const addValue = document.getElementById(id).value;
+         const addValueNum = parseFloat(addValue);
+         const addValueNumIncrement = addValueNum + 1;
+         document.getElementById(id).value = addValueNumIncrement;
+      }
+      function clickEventSortedN(id) {
+         const minusValue = document.getElementById(id).value;
+         const minusValueNum = parseFloat(minusValue);
+         const minusValueNumDecrement = minusValueNum - 1;
+         document.getElementById(id).value = minusValueNumDecrement;
+      }
+   </script>
+</body>
+
+</html>
