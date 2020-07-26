@@ -12,7 +12,7 @@
 
 <body>
 
-   <section>
+   <section id="hidden_section">
       <div class="container">
          <div class="cart">
             <div class="col-md-12 col-lg-10 mx-auto">
@@ -71,10 +71,16 @@
                   </div>
                </div>
                <div class="col-md-12 pt-4 pb-4">
-                  <button type="button" class="btn btn-success check-out">Check Out</button>
+                  <button id="checkout_order" type="button" class="btn btn-success check-out">Check Out</button>
                </div>
             </div>
          </div>
+      </div>
+   </section>
+
+   <section>
+      <div style=" display: none;" id="submitPage" class="container">
+         <h2 style="color: blueviolet; text-align: center; box-shadow: 10px 10px 10px gray;">your order has been successfully processed</h2>
       </div>
    </section>
 
@@ -190,7 +196,14 @@
          document.getElementById('current_total').innerText = sumTotal;
       });
 
-
+      // checkout 
+      const checkOutBtn = document.getElementById('checkout_order');
+      checkOutBtn.addEventListener('click', function(){
+         const hiddenFullSec = document.getElementById('hidden_section');
+         hiddenFullSec.style.display = "none";
+         let showOrderMsg = document.getElementById('submitPage');
+         showOrderMsg.style.display = "block"
+      })
 
 
       function clickEventSortedP(id) {
